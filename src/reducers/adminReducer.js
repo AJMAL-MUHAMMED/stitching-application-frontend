@@ -1,7 +1,5 @@
-import Cookies from "js-cookie";
-
 export function adminReducer(
-  state = Cookies.get("admin") ? JSON.parse(Cookies.get("admin")) : null,
+  state = localStorage.getItem("admin") ? localStorage.getItem("admin") : null,
   action
 ) {
   switch (action.type) {

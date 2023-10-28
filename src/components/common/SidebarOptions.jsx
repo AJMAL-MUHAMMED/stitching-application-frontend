@@ -7,7 +7,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import DnsIcon from "@mui/icons-material/Dns";
@@ -25,7 +24,7 @@ function SidebarOptions() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    Cookies.set("admin", "");
+    localStorage.removeItem("admin");
     dispatch({ type: "LOGOUT" });
     navigate("/login");
   };
@@ -37,7 +36,11 @@ function SidebarOptions() {
         name={"Dashboard"}
         href={"/"}
       />
-      <ListItems icon={<FaShopify size={23} />} name={"Shops"} href={"/shops"} />
+      <ListItems
+        icon={<FaShopify size={23} />}
+        name={"Shops"}
+        href={"/shops"}
+      />
       <ListItems
         icon={<TbUserCog size={25} />}
         name={"Owners"}

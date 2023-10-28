@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -80,10 +79,9 @@ function Login() {
     onSubmit: async (values, action) => {
       setIsLogin(true);
       const data = await adminLogin(values);
-      console.log(data, "ddddddd");
-      if (data.status) {
+      if (data.status === "success") {
         dispatch({ type: "LOGIN", payload: data });
-        Cookies.set("admin", JSON.stringify(data));
+        localStorage.setItem("admin", JSON.stringify(data));
         navigate("/");
         action.resetForm();
       } else {
